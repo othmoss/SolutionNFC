@@ -1,419 +1,359 @@
-<!--
-  ONETAP CIRCLE — PAGE PRODUIT WORDPRESS / WOOCOMMERCE
-  Gutenberg : bloc « HTML personnalisé » ; Elementor / Divi : widget « HTML ».
-  Avant publication : remplacez les deux occurrences de ID_PRODUIT par l'ID WooCommerce réel.
-  Le Hero est une illustration CSS de démonstration ; remplacez-la par une photo réelle pour la version commerciale.
--->
-<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0B0E14">
+  <meta name="description" content="OneTap Circle : tag NFC premium pour partager vos réseaux sociaux en un geste. 149 DH, livraison gratuite partout au Maroc.">
+  <title>OneTap Circle — Un geste. Tout connecté.</title>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <style>
+    /* =========================================================
+       ONETAP CIRCLE — DESIGN SYSTEM
+       Graphite #0B0E14 | Bleu nuit #111B32 | Cyan #36D8E8
+       ========================================================= */
+    .otc-page {
+      --otc-graphite: #0B0E14;
+      --otc-midnight: #111B32;
+      --otc-cyan: #36D8E8;
+      --otc-white: #FFFFFF;
+      --otc-muted: #AAB5C6;
+      --otc-line: rgba(255,255,255,.12);
+      --otc-radius: 22px;
+      --otc-max: 1160px;
+      position: relative;
+      isolation: isolate;
+      width: 100%;
+      margin: 0 auto;
+      overflow: hidden;
+      background: var(--otc-graphite);
+      color: var(--otc-white);
+      font: 16px/1.6 Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    .otc-page *, .otc-page *::before, .otc-page *::after { box-sizing: border-box; }
+    .otc-page img { display: block; max-width: 100%; height: auto; }
+    .otc-page a { color: inherit; text-decoration: none; }
+    .otc-page p { margin: 0 0 14px; color: var(--otc-muted); }
+    .otc-page h1, .otc-page h2, .otc-page h3, .otc-page h4 { margin: 0; color: var(--otc-white); font-weight: 750; line-height: 1.1; letter-spacing: -.04em; }
+    .otc-page h1 { font-size: clamp(2.6rem, 6.2vw, 5.5rem); }
+    .otc-page h2 { font-size: clamp(2rem, 4.2vw, 3.6rem); }
+    .otc-page h3 { font-size: clamp(1.08rem, 1.7vw, 1.32rem); letter-spacing: -.025em; }
+    .otc-page .otc-container { width: min(var(--otc-max), calc(100% - 48px)); margin-inline: auto; }
+    .otc-page .otc-section { position: relative; padding: 96px 0; }
+    .otc-page .otc-eyebrow { display: inline-flex; align-items: center; gap: 9px; margin-bottom: 19px; color: var(--otc-cyan); font-size: .76rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+    .otc-page .otc-eyebrow::before { width: 24px; height: 1px; background: currentColor; content: ""; }
+    .otc-page .otc-gradient-text { color: var(--otc-cyan); background: linear-gradient(100deg, #FFF 0%, #8DEBF2 45%, #36D8E8 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .otc-page .otc-section-head { max-width: 740px; margin: 0 auto 50px; text-align: center; }
+    .otc-page .otc-section-head p { max-width: 620px; margin: 18px auto 0; font-size: 1.02rem; line-height: 1.75; }
 
+    /* Boutons */
+    .otc-page .otc-button { display: inline-flex; min-height: 54px; align-items: center; justify-content: center; gap: 11px; padding: 14px 23px; border: 1px solid var(--otc-cyan); border-radius: 999px; background: var(--otc-cyan); color: var(--otc-graphite); font-size: .86rem; font-weight: 850; letter-spacing: .035em; line-height: 1.25; text-align: center; text-transform: uppercase; box-shadow: 0 10px 30px rgba(54,216,232,.16); transition: transform .2s ease, box-shadow .2s ease, background .2s ease; }
+    .otc-page .otc-button:hover { transform: translateY(-3px); background: #72E7F0; color: var(--otc-graphite); box-shadow: 0 16px 38px rgba(54,216,232,.25); }
+    .otc-page .otc-button-outline { border-color: rgba(255,255,255,.27); background: transparent; color: #FFF; box-shadow: none; }
+    .otc-page .otc-button-outline:hover { background: rgba(255,255,255,.08); color: #FFF; }
+    .otc-page a:focus-visible, .otc-page summary:focus-visible { outline: 3px solid #FFF; outline-offset: 4px; }
+    .otc-page .otc-pill { display: inline-flex; align-items: center; gap: 8px; padding: 8px 13px; border: 1px solid rgba(54,216,232,.3); border-radius: 999px; background: rgba(54,216,232,.08); color: #B9F7FA; font-size: .78rem; font-weight: 750; }
+
+    /* 1 — Hero */
+    .otc-page .otc-hero { position: relative; isolation: isolate; display: flex; min-height: 680px; align-items: center; overflow: hidden; padding: 80px 0 86px; background: radial-gradient(ellipse at 77% 45%, rgba(0,145,190,.26), rgba(17,27,50,.17) 30%, transparent 62%), radial-gradient(ellipse at 5% 0%, rgba(54,216,232,.08), transparent 38%), linear-gradient(118deg, #0B0E14, #10182A 55%, #111B32); }
+    .otc-page .otc-hero::after { position: absolute; z-index: -1; right: 0; bottom: 0; left: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(54,216,232,.38), transparent); content: ""; }
+    .otc-page .otc-hero-grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: 42px; align-items: center; }
+    .otc-page .otc-hero-copy { position: relative; z-index: 2; max-width: 570px; }
+    .otc-page .otc-hero-copy h1 { margin-bottom: 22px; }
+    .otc-page .otc-hero-lead { max-width: 500px; margin-bottom: 26px; font-size: clamp(1.04rem, 1.7vw, 1.2rem); line-height: 1.7; }
+    .otc-page .otc-price-line { display: flex; flex-wrap: wrap; align-items: center; gap: 13px; margin-bottom: 15px; }
+    .otc-page .otc-price { color: #FFF; font-size: 2.35rem; font-weight: 850; letter-spacing: -.06em; line-height: 1; }
+    .otc-page .otc-delivery-note { display: flex; align-items: center; gap: 9px; margin-bottom: 25px; color: #D9F9FA; font-size: .88rem; }
+    .otc-page .otc-delivery-note i, .otc-page .otc-trust-mini i { color: var(--otc-cyan); }
+    .otc-page .otc-hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+    .otc-page .otc-trust-mini { display: flex; flex-wrap: wrap; gap: 17px; margin-top: 25px; color: #B9C5D5; font-size: .78rem; }
+    .otc-page .otc-trust-mini span { display: inline-flex; align-items: center; gap: 7px; }
+
+    /* Véritable image du produit */
+    .otc-page .otc-hero-art { position: relative; display: grid; min-width: 0; min-height: 510px; place-items: center; overflow: hidden; padding: 18px; border: 1px solid rgba(54,216,232,.13); border-radius: 30px; background: radial-gradient(ellipse at 53% 53%, rgba(22,143,187,.28), rgba(17,27,50,.10) 48%, rgba(11,14,20,.15) 75%); }
+    .otc-page .otc-product-photo { display: block; width: 100%; height: 510px; object-fit: contain; object-position: center; border-radius: 25px; }
+
+    /* 2 — Comment ça marche */
+    .otc-page .otc-how-it-works { background: #0F131C; border-top: 1px solid var(--otc-line); }
+    .otc-page .otc-steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 20px; }
+    .otc-page .otc-step-card { position: relative; padding: 42px; border: 1px solid var(--otc-line); border-radius: var(--otc-radius); background: var(--otc-midnight); }
+    .otc-page .otc-step-number { margin-bottom: 12px; color: var(--otc-cyan); font-family: monospace, sans-serif; font-size: 2.6rem; font-weight: 900; opacity: .8; }
+    .otc-page .otc-step-card h3 { margin-bottom: 12px; }
+    .otc-page .otc-step-card p { margin-bottom: 0; }
+    .otc-page .otc-how-note { max-width: 850px; margin: 28px auto 0; color: #DDE8F4; font-size: .94rem; text-align: center; }
+    .otc-page .otc-how-note i { margin-right: 7px; color: var(--otc-cyan); }
+
+    /* 3 — Destinations */
+    .otc-page .otc-destinations { background: var(--otc-graphite); border-top: 1px solid var(--otc-line); }
+    .otc-page .otc-dest-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 20px; }
+    .otc-page .otc-dest-card { padding: 24px; border: 1px solid var(--otc-line); border-radius: 16px; background: #131924; text-align: center; transition: background .2s ease, border-color .2s ease, transform .2s ease; }
+    .otc-page .otc-dest-card:hover { transform: translateY(-3px); border-color: rgba(54,216,232,.3); background: var(--otc-midnight); }
+    .otc-page .otc-dest-card i { display: block; margin-bottom: 10px; color: var(--otc-cyan); font-size: 2rem; }
+    .otc-page .otc-dest-card span { color: var(--otc-white); font-size: .95rem; font-weight: 700; }
+
+    /* 4 — Caractéristiques */
+    .otc-page .otc-features { background: #0F131C; border-top: 1px solid var(--otc-line); }
+    .otc-page .otc-features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+    .otc-page .otc-feature-item { display: flex; flex-direction: column; gap: 14px; padding: 30px; border: 1px solid rgba(255,255,255,.06); border-radius: 16px; background: rgba(255,255,255,.02); }
+    .otc-page .otc-feature-icon { display: grid; width: 56px; height: 56px; place-items: center; border: 1px solid rgba(54,216,232,.1); border-radius: 50%; background: rgba(54,216,232,.06); color: var(--otc-cyan); font-size: 1.6rem; }
+    .otc-page .otc-feature-item h3 { margin-bottom: 4px; }
+    .otc-page .otc-feature-item p { margin: 0; }
+
+    /* 5 — FAQ */
+    .otc-page .otc-faq { background: var(--otc-graphite); border-top: 1px solid var(--otc-line); }
+    .otc-page .otc-faq-wrapper { display: flex; max-width: 840px; flex-direction: column; gap: 16px; margin: 0 auto; }
+    .otc-page .otc-faq-item { overflow: hidden; border: 1px solid var(--otc-line); border-radius: 14px; background: var(--otc-midnight); transition: border-color .2s ease; }
+    .otc-page .otc-faq-item[open] { border-color: rgba(54,216,232,.4); }
+    .otc-page .otc-faq-item summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 22px 30px; color: var(--otc-white); cursor: pointer; font-size: 1.02rem; font-weight: 700; list-style: none; }
+    .otc-page .otc-faq-item summary::-webkit-details-marker { display: none; }
+    .otc-page .otc-faq-item summary i { flex: 0 0 auto; color: var(--otc-cyan); font-size: .9rem; transition: transform .2s ease; }
+    .otc-page .otc-faq-item[open] summary i { transform: rotate(180deg); }
+    .otc-page .otc-faq-content { padding: 18px 30px 24px; border-top: 1px solid var(--otc-line); }
+    .otc-page .otc-faq-content p { margin: 0; font-size: .96rem; line-height: 1.7; }
+
+    /* 6 — CTA final et réassurance */
+    .otc-page .otc-final-cta { padding-bottom: 110px; border-top: 1px solid var(--otc-line); background: linear-gradient(180deg, #0F131C 0%, #0B0E14 100%); }
+    .otc-page .otc-trust-badges { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; margin-bottom: 64px; text-align: center; }
+    .otc-page .otc-badge-card { padding: 20px; }
+    .otc-page .otc-badge-card i { display: block; margin-bottom: 16px; color: var(--otc-cyan); font-size: 2.2rem; }
+    .otc-page .otc-badge-card h4 { margin-bottom: 8px; color: var(--otc-white); font-size: 1.15rem; font-weight: 750; }
+    .otc-page .otc-badge-card p { margin: 0; font-size: .95rem; }
+    .otc-page .otc-cta-box { max-width: 920px; margin: 0 auto; padding: 64px 40px; border: 1px solid var(--otc-line); border-radius: var(--otc-radius); background: linear-gradient(135deg, #111B32 0%, #06090F 100%); text-align: center; box-shadow: 0 30px 60px rgba(0,0,0,.4); }
+    .otc-page .otc-cta-box h2 { margin-bottom: 18px; font-size: clamp(1.8rem, 3.5vw, 2.6rem); }
+    .otc-page .otc-cta-box p { max-width: 600px; margin: 0 auto 32px; font-size: 1.1rem; }
+    .otc-page .otc-footer-note { padding: 20px 12px; background: #080B11; color: #78879B; font-size: .75rem; text-align: center; }
+
+    /* Responsive */
+    @media (max-width: 968px) {
+      .otc-page .otc-section { padding: 76px 0; }
+      .otc-page .otc-hero-grid { grid-template-columns: 1fr; gap: 38px; text-align: center; }
+      .otc-page .otc-hero-copy { margin: 0 auto; }
+      .otc-page .otc-hero-copy .otc-eyebrow { justify-content: center; }
+      .otc-page .otc-hero-lead { margin-right: auto; margin-left: auto; }
+      .otc-page .otc-price-line, .otc-page .otc-delivery-note { justify-content: center; }
+      .otc-page .otc-hero-actions, .otc-page .otc-trust-mini { justify-content: center; }
+      .otc-page .otc-hero-art { width: min(100%, 620px); margin: 0 auto; }
+      .otc-page .otc-dest-grid { grid-template-columns: repeat(2, 1fr); }
+      .otc-page .otc-faq-wrapper { max-width: 100%; }
+    }
+    @media (max-width: 600px) {
+      .otc-page .otc-container { width: calc(100% - 32px); }
+      .otc-page .otc-section { padding: 66px 0; }
+      .otc-page .otc-hero { min-height: auto; padding: 58px 0 42px; }
+      .otc-page .otc-hero-grid { gap: 22px; }
+      .otc-page .otc-hero-art { min-height: 360px; padding: 10px; }
+      .otc-page .otc-product-photo { height: 340px; }
+      .otc-page .otc-steps-grid { grid-template-columns: 1fr; gap: 14px; }
+      .otc-page .otc-step-card { padding: 28px; }
+      .otc-page .otc-dest-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+      .otc-page .otc-dest-card { padding: 19px 10px; }
+      .otc-page .otc-features-grid { grid-template-columns: 1fr; gap: 14px; }
+      .otc-page .otc-feature-item { padding: 24px; }
+      .otc-page .otc-faq-item summary { padding: 18px; font-size: .92rem; }
+      .otc-page .otc-faq-content { padding: 16px 18px 20px; }
+      .otc-page .otc-trust-badges { grid-template-columns: 1fr; gap: 12px; margin-bottom: 36px; }
+      .otc-page .otc-badge-card { padding: 16px 10px; }
+      .otc-page .otc-cta-box { padding: 38px 22px; }
+      .otc-page .otc-final-cta { padding-bottom: 72px; }
+      .otc-page .otc-button { width: 100%; }
+      .otc-page .otc-hero-actions { width: 100%; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .otc-page .otc-button, .otc-page .otc-dest-card, .otc-page .otc-faq-item summary i { transition: none; }
+    }
+  </style>
+</head>
+<body>
 <div class="otc-page">
-<style>
-/* =========================================================
-   ONETAP CIRCLE — DESIGN SYSTEM (CSS isolé sous .otc-page)
-   Graphite #0B0E14 | Bleu nuit #111B32 | Cyan #36D8E8
-   ========================================================= */
-.otc-page {
-  --otc-graphite: #0B0E14;
-  --otc-midnight: #111B32;
-  --otc-cyan: #36D8E8;
-  --otc-white: #FFFFFF;
-  --otc-muted: #AAB5C6;
-  --otc-line: rgba(255,255,255,.12);
-  --otc-radius: 22px;
-  --otc-max: 1160px;
-  position: relative;
-  isolation: isolate;
-  width: 100%;
-  margin: 0 auto;
-  overflow: hidden;
-  background: var(--otc-graphite);
-  color: var(--otc-white);
-  font: 16px/1.6 Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-}
-.otc-page *, .otc-page *::before, .otc-page *::after { box-sizing: border-box; }
-.otc-page img { display: block; max-width: 100%; height: auto; }
-.otc-page a { color: inherit; text-decoration: none; }
-.otc-page p { margin: 0 0 14px; color: var(--otc-muted); }
-.otc-page h1, .otc-page h2, .otc-page h3, .otc-page h4 { margin: 0; color: var(--otc-white); font-weight: 750; line-height: 1.1; letter-spacing: -.04em; }
-.otc-page h1 { font-size: clamp(2.6rem, 6.2vw, 5.5rem); }
-.otc-page h2 { font-size: clamp(2rem, 4.2vw, 3.6rem); }
-.otc-page h3 { font-size: clamp(1.08rem, 1.7vw, 1.32rem); letter-spacing: -.025em; }
-.otc-page .otc-container { width: min(var(--otc-max), calc(100% - 48px)); margin-inline: auto; }
-.otc-page .otc-section { position: relative; padding: 96px 0; }
-.otc-page .otc-eyebrow { display: inline-flex; align-items: center; gap: 9px; margin-bottom: 19px; color: var(--otc-cyan); font-size: .76rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
-.otc-page .otc-eyebrow::before { width: 24px; height: 1px; background: currentColor; content: ""; }
-.otc-page .otc-gradient-text { color: var(--otc-cyan); background: linear-gradient(100deg, #FFF 0%, #8DEBF2 45%, #36D8E8 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
-.otc-page .otc-section-head { max-width: 740px; margin: 0 auto 50px; text-align: center; }
-.otc-page .otc-section-head p { max-width: 620px; margin: 18px auto 0; font-size: 1.02rem; line-height: 1.75; }
 
-/* BOUTONS */
-.otc-page .otc-button { display: inline-flex; min-height: 54px; align-items: center; justify-content: center; gap: 11px; padding: 14px 23px; border: 1px solid var(--otc-cyan); border-radius: 999px; background: var(--otc-cyan); color: var(--otc-graphite); font-size: .86rem; font-weight: 850; letter-spacing: .035em; line-height: 1.25; text-align: center; text-transform: uppercase; box-shadow: 0 10px 30px rgba(54,216,232,.16); transition: transform .2s ease, box-shadow .2s ease, background .2s ease; }
-.otc-page .otc-button:hover { transform: translateY(-3px); background: #72E7F0; color: var(--otc-graphite); box-shadow: 0 16px 38px rgba(54,216,232,.25); }
-.otc-page .otc-button-outline { border-color: rgba(255,255,255,.27); background: transparent; color: #FFF; box-shadow: none; }
-.otc-page .otc-button-outline:hover { background: rgba(255,255,255,.08); color: #FFF; }
-.otc-page a:focus-visible, .otc-page summary:focus-visible { outline: 3px solid #FFF; outline-offset: 4px; }
-.otc-page .otc-pill { display: inline-flex; align-items: center; gap: 8px; padding: 8px 13px; border: 1px solid rgba(54,216,232,.3); border-radius: 999px; background: rgba(54,216,232,.08); color: #B9F7FA; font-size: .78rem; font-weight: 750; }
-
-/* 1 — HERO */
-.otc-page .otc-hero { position: relative; isolation: isolate; display: flex; min-height: 680px; align-items: center; overflow: hidden; padding: 80px 0 86px; background: radial-gradient(ellipse at 77% 45%, rgba(0,145,190,.26), rgba(17,27,50,.17) 30%, transparent 62%), radial-gradient(ellipse at 5% 0%, rgba(54,216,232,.08), transparent 38%), linear-gradient(118deg, #0B0E14, #10182A 55%, #111B32); }
-.otc-page .otc-hero::after { position: absolute; z-index: -1; right: 0; bottom: 0; left: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(54,216,232,.38), transparent); content: ""; }
-.otc-page .otc-hero-grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: 42px; align-items: center; }
-.otc-page .otc-hero-copy { position: relative; z-index: 2; max-width: 570px; }
-.otc-page .otc-hero-copy h1 { margin-bottom: 22px; }
-.otc-page .otc-hero-lead { max-width: 500px; margin-bottom: 26px; font-size: clamp(1.04rem, 1.7vw, 1.2rem); line-height: 1.7; }
-.otc-page .otc-price-line { display: flex; flex-wrap: wrap; align-items: center; gap: 13px; margin-bottom: 15px; }
-.otc-page .otc-price { color: #FFF; font-size: 2.35rem; font-weight: 850; letter-spacing: -.06em; line-height: 1; }
-.otc-page .otc-delivery-note { display: flex; align-items: center; gap: 9px; margin-bottom: 25px; color: #D9F9FA; font-size: .88rem; }
-.otc-page .otc-delivery-note i, .otc-page .otc-trust-mini i { color: var(--otc-cyan); }
-.otc-page .otc-hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
-.otc-page .otc-trust-mini { display: flex; flex-wrap: wrap; gap: 17px; margin-top: 25px; color: #B9C5D5; font-size: .78rem; }
-.otc-page .otc-trust-mini span { display: inline-flex; align-items: center; gap: 7px; }
-
-/* HERO VISUEL : parent relatif pour ancrer le téléphone, les ondes et le tag */
-.otc-page .otc-hero-art { position: relative; display: block; min-width: 0; min-height: 510px; overflow: hidden; border-radius: 30px; background: radial-gradient(ellipse at 53% 53%, rgba(22,143,187,.28), rgba(17,27,50,.05) 48%, transparent 70%); }
-.otc-page .otc-art-glow { position: absolute; top: 23%; left: 25%; width: 390px; height: 390px; border-radius: 50%; background: rgba(54,216,232,.12); filter: blur(80px); pointer-events: none; }
-.otc-page .otc-phone { position: absolute; z-index: 3; top: 8%; right: 22%; width: 202px; height: 390px; padding: 10px; transform: rotate(10deg); border: 2px solid #73849D; border-radius: 35px; background: linear-gradient(145deg, #34445D, #06090F 32%, #101B32); box-shadow: 22px 30px 55px rgba(0,0,0,.58), inset 0 0 0 2px rgba(255,255,255,.1); }
-.otc-page .otc-phone-screen { position: relative; height: 100%; overflow: hidden; padding: 31px 12px 14px; border-radius: 26px; background: radial-gradient(circle at 50% 0, #284D7D, #101A32 45%, #070B13); text-align: center; }
-.otc-page .otc-phone-camera { position: absolute; top: 9px; left: 50%; width: 66px; height: 13px; transform: translateX(-50%); border-radius: 20px; background: #03060B; }
-.otc-page .otc-phone-profile { margin-top: 3px; text-align: center; }
-.otc-page .otc-avatar-fictif { display: grid; width: 53px; height: 53px; place-items: center; margin: 0 auto 9px; border: 2px solid rgba(54,216,232,.8); border-radius: 50%; background: linear-gradient(135deg, #36D8E8, #634C9B 55%, #111B32); color: #FFF; font-size: 1.1rem; box-shadow: 0 0 20px rgba(54,216,232,.25); }
-.otc-page .otc-username-fictif { margin-bottom: 3px; color: #FFF; font-size: .88rem; font-weight: 750; letter-spacing: .02em; }
-.otc-page .otc-phone-subtitle { margin-bottom: 13px; color: #B8C5D7; font-size: .58rem; }
-.otc-page .otc-links-fictif { display: flex; flex-direction: column; gap: 8px; padding: 0 2px; }
-.otc-page .otc-link-item-fictif { display: flex; min-height: 34px; align-items: center; gap: 9px; padding: 8px 10px; border: 1px solid rgba(255,255,255,.1); border-radius: 9px; background: rgba(255,255,255,.09); color: #FFF; font-size: .65rem; font-weight: 700; text-align: left; }
-.otc-page .otc-link-item-fictif i { width: 14px; color: var(--otc-cyan); text-align: center; }
-.otc-page .otc-link-instagram i { color: #F58BCE; }
-.otc-page .otc-link-tiktok i { color: #75F4F1; }
-.otc-page .otc-link-linkedin i { color: #54A9FF; }
-.otc-page .otc-nfc-waves { position: absolute; z-index: 2; top: 52%; right: 23%; width: 180px; height: 88px; transform: rotate(-5deg); pointer-events: none; }
-.otc-page .otc-nfc-waves span { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); border: 3px solid var(--otc-cyan); border-bottom: 0; border-radius: 100px 100px 0 0; filter: drop-shadow(0 0 8px rgba(54,216,232,.8)); }
-.otc-page .otc-nfc-waves span:nth-child(1) { width: 150px; height: 68px; opacity: .58; }
-.otc-page .otc-nfc-waves span:nth-child(2) { width: 105px; height: 48px; opacity: .78; }
-.otc-page .otc-nfc-waves span:nth-child(3) { width: 58px; height: 28px; opacity: .95; }
-.otc-page .otc-tag-physical { position: absolute; z-index: 4; left: 11%; bottom: 5%; display: grid; width: 180px; height: 180px; place-items: center; transform: rotate(-7deg); border: 8px solid #05070B; border-radius: 50%; background: radial-gradient(circle at 30% 25%, #1C2E54 0%, #0B0E14 100%); box-shadow: 18px 25px 45px rgba(0,0,0,.65); animation: otc-float 4s ease-in-out infinite; }
-.otc-page .otc-tag-inner { text-align: center; color: var(--otc-cyan); }
-.otc-page .otc-tag-inner i { display: block; margin-bottom: 4px; color: var(--otc-cyan); font-size: 2.5rem; text-shadow: 0 0 15px rgba(54,216,232,.4); }
-.otc-page .otc-tag-text { color: var(--otc-white); font-size: .65rem; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; }
-@keyframes otc-float { 0%, 100% { transform: translateY(0) rotate(-7deg); } 50% { transform: translateY(-12px) rotate(-4deg); } }
-
-/* 2 — COMMENT ÇA MARCHE */
-.otc-page .otc-how-it-works { background: #0F131C; border-top: 1px solid var(--otc-line); }
-.otc-page .otc-steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 20px; }
-.otc-page .otc-step-card { position: relative; padding: 42px; border: 1px solid var(--otc-line); border-radius: var(--otc-radius); background: var(--otc-midnight); }
-.otc-page .otc-step-number { margin-bottom: 12px; color: var(--otc-cyan); font-family: monospace, sans-serif; font-size: 2.6rem; font-weight: 900; opacity: .8; }
-.otc-page .otc-step-card h3 { margin-bottom: 12px; }
-.otc-page .otc-step-card p { margin-bottom: 0; }
-.otc-page .otc-how-note { max-width: 850px; margin: 28px auto 0; color: #DDE8F4; font-size: .94rem; text-align: center; }
-.otc-page .otc-how-note i { margin-right: 7px; color: var(--otc-cyan); }
-
-/* 3 — DESTINATIONS */
-.otc-page .otc-destinations { background: var(--otc-graphite); border-top: 1px solid var(--otc-line); }
-.otc-page .otc-dest-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 20px; }
-.otc-page .otc-dest-card { padding: 24px; border: 1px solid var(--otc-line); border-radius: 16px; background: #131924; text-align: center; transition: background .2s ease, border-color .2s ease, transform .2s ease; }
-.otc-page .otc-dest-card:hover { transform: translateY(-3px); border-color: rgba(54,216,232,.3); background: var(--otc-midnight); }
-.otc-page .otc-dest-card i { display: block; margin-bottom: 10px; color: var(--otc-cyan); font-size: 2rem; }
-.otc-page .otc-dest-card span { color: var(--otc-white); font-size: .95rem; font-weight: 700; }
-
-/* 4 — CARACTÉRISTIQUES */
-.otc-page .otc-features { background: #0F131C; border-top: 1px solid var(--otc-line); }
-.otc-page .otc-features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
-.otc-page .otc-feature-item { display: flex; flex-direction: column; gap: 14px; padding: 30px; border: 1px solid rgba(255,255,255,.06); border-radius: 16px; background: rgba(255,255,255,.02); }
-.otc-page .otc-feature-icon { display: grid; width: 56px; height: 56px; place-items: center; border: 1px solid rgba(54,216,232,.1); border-radius: 50%; background: rgba(54,216,232,.06); color: var(--otc-cyan); font-size: 1.6rem; }
-.otc-page .otc-feature-item h3 { margin-bottom: 4px; }
-.otc-page .otc-feature-item p { margin: 0; }
-
-/* 5 — FAQ */
-.otc-page .otc-faq { background: var(--otc-graphite); border-top: 1px solid var(--otc-line); }
-.otc-page .otc-faq-wrapper { display: flex; max-width: 840px; flex-direction: column; gap: 16px; margin: 0 auto; }
-.otc-page .otc-faq-item { overflow: hidden; border: 1px solid var(--otc-line); border-radius: 14px; background: var(--otc-midnight); transition: border-color .2s ease; }
-.otc-page .otc-faq-item[open] { border-color: rgba(54,216,232,.4); }
-.otc-page .otc-faq-item summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 22px 30px; color: var(--otc-white); cursor: pointer; font-size: 1.02rem; font-weight: 700; list-style: none; }
-.otc-page .otc-faq-item summary::-webkit-details-marker { display: none; }
-.otc-page .otc-faq-item summary i { flex: 0 0 auto; color: var(--otc-cyan); font-size: .9rem; transition: transform .2s ease; }
-.otc-page .otc-faq-item[open] summary i { transform: rotate(180deg); }
-.otc-page .otc-faq-content { padding: 18px 30px 24px; border-top: 1px solid var(--otc-line); }
-.otc-page .otc-faq-content p { margin: 0; font-size: .96rem; line-height: 1.7; }
-
-/* 6 — FINAL CTA & BADGES */
-.otc-page .otc-final-cta { padding-bottom: 110px; border-top: 1px solid var(--otc-line); background: linear-gradient(180deg, #0F131C 0%, #0B0E14 100%); }
-.otc-page .otc-trust-badges { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; margin-bottom: 64px; text-align: center; }
-.otc-page .otc-badge-card { padding: 20px; }
-.otc-page .otc-badge-card i { display: block; margin-bottom: 16px; color: var(--otc-cyan); font-size: 2.2rem; }
-.otc-page .otc-badge-card h4 { margin-bottom: 8px; color: var(--otc-white); font-size: 1.15rem; font-weight: 750; }
-.otc-page .otc-badge-card p { margin: 0; font-size: .95rem; }
-.otc-page .otc-cta-box { max-width: 920px; margin: 0 auto; padding: 64px 40px; border: 1px solid var(--otc-line); border-radius: var(--otc-radius); background: linear-gradient(135deg, #111B32 0%, #06090F 100%); text-align: center; box-shadow: 0 30px 60px rgba(0,0,0,.4); }
-.otc-page .otc-cta-box h2 { margin-bottom: 18px; font-size: clamp(1.8rem, 3.5vw, 2.6rem); }
-.otc-page .otc-cta-box p { max-width: 600px; margin: 0 auto 32px; font-size: 1.1rem; }
-
-/* RESPONSIVE — tous les sélecteurs sont limités à .otc-page */
-@media (max-width: 968px) {
-  .otc-page .otc-section { padding: 76px 0; }
-  .otc-page .otc-hero-grid { grid-template-columns: 1fr; gap: 38px; text-align: center; }
-  .otc-page .otc-hero-copy { margin: 0 auto; }
-  .otc-page .otc-hero-copy .otc-eyebrow { justify-content: center; }
-  .otc-page .otc-hero-lead { margin-right: auto; margin-left: auto; }
-  .otc-page .otc-price-line, .otc-page .otc-delivery-note { justify-content: center; }
-  .otc-page .otc-hero-actions, .otc-page .otc-trust-mini { justify-content: center; }
-  .otc-page .otc-hero-art { width: min(100%, 620px); margin: 0 auto; }
-  .otc-page .otc-dest-grid { grid-template-columns: repeat(2, 1fr); }
-  .otc-page .otc-tag-physical { left: 5%; bottom: 5%; width: 150px; height: 150px; border-width: 6px; }
-  .otc-page .otc-tag-inner i { font-size: 2rem; }
-  .otc-page .otc-faq-wrapper { max-width: 100%; }
-}
-@media (max-width: 600px) {
-  .otc-page .otc-container { width: calc(100% - 32px); }
-  .otc-page .otc-section { padding: 66px 0; }
-  .otc-page .otc-hero { min-height: auto; padding: 58px 0 42px; }
-  .otc-page .otc-hero-grid { gap: 22px; }
-  .otc-page .otc-hero-art { min-height: 420px; }
-  .otc-page .otc-phone { top: 4%; right: 18%; width: 174px; height: 340px; }
-  .otc-page .otc-tag-physical { left: 5%; bottom: 4%; width: 138px; height: 138px; }
-  .otc-page .otc-tag-inner i { font-size: 1.8rem; }
-  .otc-page .otc-tag-text { font-size: .58rem; }
-  .otc-page .otc-nfc-waves { top: 53%; right: 20%; transform: rotate(-5deg) scale(.82); }
-  .otc-page .otc-steps-grid { grid-template-columns: 1fr; gap: 14px; }
-  .otc-page .otc-step-card { padding: 28px; }
-  .otc-page .otc-dest-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
-  .otc-page .otc-dest-card { padding: 19px 10px; }
-  .otc-page .otc-features-grid { grid-template-columns: 1fr; gap: 14px; }
-  .otc-page .otc-feature-item { padding: 24px; }
-  .otc-page .otc-faq-item summary { padding: 18px 18px; font-size: .92rem; }
-  .otc-page .otc-faq-content { padding: 16px 18px 20px; }
-  .otc-page .otc-trust-badges { grid-template-columns: 1fr; gap: 12px; margin-bottom: 36px; }
-  .otc-page .otc-badge-card { padding: 16px 10px; }
-  .otc-page .otc-cta-box { padding: 38px 22px; }
-  .otc-page .otc-final-cta { padding-bottom: 72px; }
-  .otc-page .otc-button { width: 100%; }
-  .otc-page .otc-hero-actions { width: 100%; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .otc-page .otc-tag-physical { animation: none; }
-  .otc-page .otc-button, .otc-page .otc-dest-card, .otc-page .otc-faq-item summary i { transition: none; }
-}
-</style>
-
-<!-- =========================================================
-     1 — HERO PRODUIT
-     ========================================================= -->
-<section class="otc-section otc-hero" id="onetap-top">
-  <div class="otc-container otc-hero-grid">
-    <div class="otc-hero-copy">
-      <span class="otc-eyebrow">OneTap Circle · NFC Smart Tag</span>
-      <h1>UN GESTE.<br><span class="otc-gradient-text">TOUT CONNECTÉ.</span></h1>
-      <p class="otc-hero-lead">Vos réseaux sociaux, votre site et vos services accessibles en un instant. Approchez votre smartphone du tag NFC et partagez votre univers.</p>
-      <div class="otc-price-line">
-        <span class="otc-price">149 DH</span>
-        <span class="otc-pill"><i class="fa-solid fa-truck-fast" aria-hidden="true"></i> Livraison gratuite</span>
+  <!-- 1 — HERO PRODUIT -->
+  <section class="otc-section otc-hero" id="onetap-top">
+    <div class="otc-container otc-hero-grid">
+      <div class="otc-hero-copy">
+        <span class="otc-eyebrow">OneTap Circle · NFC Smart Tag</span>
+        <h1>UN GESTE.<br><span class="otc-gradient-text">TOUT CONNECTÉ.</span></h1>
+        <p class="otc-hero-lead">Vos réseaux sociaux, votre site et vos services accessibles en un instant. Approchez votre smartphone du tag NFC et partagez votre univers.</p>
+        <div class="otc-price-line">
+          <span class="otc-price">149 DH</span>
+          <span class="otc-pill"><i class="fa-solid fa-truck-fast" aria-hidden="true"></i> Livraison gratuite</span>
+        </div>
+        <div class="otc-delivery-note"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> 0 DH partout au Maroc · Livraison sous 24 à 48 h maximum.</div>
+        <div class="otc-hero-actions">
+          <a href="https://wa.me/212706744833?text=Bonjour%2C%20je%20souhaite%20commander%20un%20tag%20NFC%20OneTap%20Circle%20%C3%A0%20149%20DH." target="_blank" rel="noopener noreferrer" class="otc-button">COMMANDER MON ONETAP CIRCLE <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+          <a href="#otc-how" class="otc-button otc-button-outline">Comment ça marche ?</a>
+        </div>
+        <div class="otc-trust-mini">
+          <span><i class="fa-solid fa-bolt" aria-hidden="true"></i> Configuration en 2 minutes</span>
+          <span><i class="fa-solid fa-infinity" aria-hidden="true"></i> Lien modifiable gratuitement</span>
+        </div>
       </div>
-      <div class="otc-delivery-note"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> 0 DH partout au Maroc · Livraison sous 24 à 48 h maximum.</div>
-      <div class="otc-hero-actions">
-        <!-- Insérer ici le lien d'ajout au panier WooCommerce -->
+
+      <!-- Image : le fichier onetap-circle-multireseaux.webp doit être à côté de index.html dans GitHub. -->
+      <div class="otc-hero-art">
+        <img src="./onetap-circle-multireseaux.webp" alt="Tag NFC OneTap Circle avec les logos des réseaux sociaux" class="otc-product-photo" width="1254" height="1254">
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 — COMMENT ÇA MARCHE -->
+  <section id="otc-how" class="otc-section otc-how-it-works">
+    <div class="otc-container">
+      <div class="otc-section-head">
+        <span class="otc-eyebrow">Démonstration</span>
+        <h2>Votre univers numérique.<br><span class="otc-gradient-text">En trois étapes simples.</span></h2>
+        <p>Plus besoin de chercher un profil ou de dicter une adresse complexe lors d'une rencontre.</p>
+      </div>
+      <div class="otc-steps-grid">
+        <div class="otc-step-card">
+          <div class="otc-step-number">01</div>
+          <h3>CONFIGUREZ</h3>
+          <p>Scannez le tag pour la première fois. Une page de configuration sécurisée s'ouvre : collez votre lien et validez. Votre tag est prêt en moins de 2 minutes.</p>
+        </div>
+        <div class="otc-step-card">
+          <div class="otc-step-number">02</div>
+          <h3>APPROCHEZ</h3>
+          <p>Approchez un smartphone compatible NFC du tag rond en acrylique. Le scan est instantané.</p>
+        </div>
+        <div class="otc-step-card">
+          <div class="otc-step-number">03</div>
+          <h3>CONNECTEZ</h3>
+          <p>Votre page s'ouvre directement. Votre interlocuteur découvre le lien que vous avez associé à votre tag.</p>
+        </div>
+      </div>
+      <p class="otc-how-note"><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Configurez votre tag une seule fois. Ensuite, chaque scan ouvre directement votre lien. Modifiez-le gratuitement, autant de fois que vous le souhaitez.</p>
+    </div>
+  </section>
+
+  <!-- 3 — HUIT DESTINATIONS -->
+  <section class="otc-section otc-destinations" id="otc-destinations">
+    <div class="otc-container">
+      <div class="otc-section-head">
+        <span class="otc-eyebrow">Polyvalence ultime</span>
+        <h2>Un seul tag.<br><span class="otc-gradient-text">Huit destinations à la carte.</span></h2>
+        <p>Associez votre OneTap Circle à la plateforme qui correspond le mieux à votre activité commerciale ou personnelle. Une page multi-liens peut aussi réunir plusieurs profils.</p>
+      </div>
+      <div class="otc-dest-grid">
+        <div class="otc-dest-card"><i class="fa-brands fa-instagram" aria-hidden="true"></i><span>Instagram</span></div>
+        <div class="otc-dest-card"><i class="fa-brands fa-tiktok" aria-hidden="true"></i><span>TikTok</span></div>
+        <div class="otc-dest-card"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i><span>WhatsApp</span></div>
+        <div class="otc-dest-card"><i class="fa-brands fa-linkedin" aria-hidden="true"></i><span>LinkedIn</span></div>
+        <div class="otc-dest-card"><i class="fa-brands fa-youtube" aria-hidden="true"></i><span>YouTube</span></div>
+        <div class="otc-dest-card"><i class="fa-brands fa-facebook" aria-hidden="true"></i><span>Facebook</span></div>
+        <div class="otc-dest-card"><i class="fa-solid fa-link" aria-hidden="true"></i><span>Linktree</span></div>
+        <div class="otc-dest-card"><i class="fa-solid fa-utensils" aria-hidden="true"></i><span>Menu digital</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 — CARACTÉRISTIQUES -->
+  <section class="otc-section otc-features" id="otc-features">
+    <div class="otc-container">
+      <div class="otc-section-head">
+        <span class="otc-eyebrow">Finition d'excellence</span>
+        <h2>Finition premium.<br><span class="otc-gradient-text">Conçue pour durer.</span></h2>
+        <p>Un support élégant et robuste, pensé pour accompagner votre activité au quotidien.</p>
+      </div>
+      <div class="otc-features-grid">
+        <div class="otc-feature-item">
+          <div class="otc-feature-icon"><i class="fa-solid fa-gem" aria-hidden="true"></i></div>
+          <h3>Acrylique premium</h3>
+          <p>Un support rigide et épais, conçu pour durer. Son format rond rappelle un jeton technologique haut de gamme.</p>
+        </div>
+        <div class="otc-feature-item">
+          <div class="otc-feature-icon"><i class="fa-solid fa-droplet" aria-hidden="true"></i></div>
+          <h3>Protection en résine</h3>
+          <p>Un revêtement en résine brillante protège la surface. Profitez d'une excellente résistance aux rayures et d'une étanchéité totale.</p>
+        </div>
+        <div class="otc-feature-item">
+          <div class="otc-feature-icon"><i class="fa-solid fa-map-pin" aria-hidden="true"></i></div>
+          <h3>Intérieur ou extérieur</h3>
+          <p>Installez votre tag sur un comptoir, un bureau, une vitrine ou une terrasse de café. Il s'adapte à votre environnement.</p>
+        </div>
+        <div class="otc-feature-item">
+          <div class="otc-feature-icon"><i class="fa-solid fa-wave-square" aria-hidden="true"></i></div>
+          <h3>NFC intégré sans batterie</h3>
+          <p>Aucune recharge requise. La puce est alimentée par le champ électromagnétique NFC du smartphone lors du scan.</p>
+        </div>
+        <div class="otc-feature-item">
+          <div class="otc-feature-icon"><i class="fa-solid fa-mobile-screen" aria-hidden="true"></i></div>
+          <h3>Compatible iOS &amp; Android</h3>
+          <p>Partagez votre univers avec les smartphones compatibles NFC, sans application dédiée à installer pour la lecture.</p>
+        </div>
+        <div class="otc-feature-item">
+          <div class="otc-feature-icon"><i class="fa-solid fa-infinity" aria-hidden="true"></i></div>
+          <h3>Votre lien, votre liberté</h3>
+          <p>Modifiez votre lien gratuitement, autant de fois que vous le souhaitez. Vous gardez le contrôle de votre destination.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 — FAQ -->
+  <section class="otc-section otc-faq" id="otc-faq">
+    <div class="otc-container">
+      <div class="otc-section-head">
+        <span class="otc-eyebrow">Des réponses à vos questions</span>
+        <h2>Les questions essentielles</h2>
+        <p>Les informations utiles avant de choisir votre OneTap Circle.</p>
+      </div>
+      <div class="otc-faq-wrapper">
+        <details class="otc-faq-item">
+          <summary>Comment configurer mon tag NFC ? <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
+          <div class="otc-faq-content"><p>C'est très simple. Scannez votre tag pour la première fois. Une page de configuration sécurisée s'ouvre. Collez votre lien et validez. Votre tag est opérationnel en deux minutes.</p></div>
+        </details>
+        <details class="otc-faq-item">
+          <summary>Puis-je modifier mon lien après configuration ? <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
+          <div class="otc-faq-content"><p>Absolument. Vous gardez le contrôle de votre destination. Changez votre lien de redirection gratuitement et autant de fois que vous le souhaitez.</p></div>
+        </details>
+        <details class="otc-faq-item">
+          <summary>Le tag nécessite-t-il une batterie ou une application ? <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
+          <div class="otc-faq-content"><p>Non. La puce NFC fonctionne sans pile ni recharge. Aucune application dédiée n'est nécessaire pour lire le tag sur un smartphone compatible NFC.</p></div>
+        </details>
+        <details class="otc-faq-item">
+          <summary>Le tag résiste-t-il à l'eau et aux conditions extérieures ? <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
+          <div class="otc-faq-content"><p>Oui. Grâce à sa structure en acrylique premium et à son revêtement protecteur en résine brillante, le tag est étanche et résistant aux rayures. Il convient à une utilisation intérieure et extérieure.</p></div>
+        </details>
+        <details class="otc-faq-item">
+          <summary>Quels sont les coûts et délais de livraison au Maroc ? <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
+          <div class="otc-faq-content"><p>La livraison est entièrement gratuite (0 DH) partout au Maroc. Votre commande est livrée sous 24 à 48 heures maximum après validation.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 — CTA FINAL ET RÉASSURANCE -->
+  <section class="otc-section otc-final-cta" id="otc-order">
+    <div class="otc-container">
+      <div class="otc-trust-badges">
+        <div class="otc-badge-card">
+          <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+          <h4>Vous gardez le contrôle</h4>
+          <p>Vous choisissez et modifiez librement votre destination.</p>
+        </div>
+        <div class="otc-badge-card">
+          <i class="fa-solid fa-stopwatch" aria-hidden="true"></i>
+          <h4>Prêt en 2 minutes</h4>
+          <p>Configurez votre lien depuis votre smartphone, sans application dédiée.</p>
+        </div>
+        <div class="otc-badge-card">
+          <i class="fa-solid fa-truck" aria-hidden="true"></i>
+          <h4>Livraison offerte</h4>
+          <p>0 DH partout au Maroc. Livraison en 24 à 48 heures maximum.</p>
+        </div>
+      </div>
+      <div class="otc-cta-box">
+        <h2>Votre réseau mérite mieux qu'un simple échange de coordonnées.</h2>
+        <p>Faites découvrir votre univers numérique d'un seul contact. Un tag. Un smartphone. Toutes vos connexions.</p>
+        <div class="otc-price-line" style="justify-content:center;margin-bottom:25px;"><span class="otc-price">149 DH</span><span class="otc-pill">Livraison gratuite partout au Maroc</span></div>
         <a href="https://wa.me/212706744833?text=Bonjour%2C%20je%20souhaite%20commander%20un%20tag%20NFC%20OneTap%20Circle%20%C3%A0%20149%20DH." target="_blank" rel="noopener noreferrer" class="otc-button">COMMANDER MON ONETAP CIRCLE <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
-        <a href="#otc-how" class="otc-button otc-button-outline">Comment ça marche ?</a>
-      </div>
-      <div class="otc-trust-mini">
-        <span><i class="fa-solid fa-bolt" aria-hidden="true"></i> Configuration en 2 minutes</span>
-        <span><i class="fa-solid fa-infinity" aria-hidden="true"></i> Lien modifiable gratuitement</span>
       </div>
     </div>
+  </section>
 
-    <!-- Illustration CSS du Hero : remplaçable par une photo réelle du produit. -->
-    <div class="otc-hero-art" role="img" aria-label="Illustration d'un smartphone affichant un profil numérique au-dessus d'un tag NFC rond">
-      <div class="otc-art-glow" aria-hidden="true"></div>
-      <div class="otc-phone" aria-hidden="true">
-        <div class="otc-phone-screen">
-          <div class="otc-phone-camera"></div>
-          <div class="otc-phone-profile">
-            <div class="otc-avatar-fictif"><i class="fa-solid fa-user"></i></div>
-            <div class="otc-username-fictif">@votre_marque</div>
-            <div class="otc-phone-subtitle">OneTap Link Connect</div>
-          </div>
-          <div class="otc-links-fictif">
-            <div class="otc-link-item-fictif otc-link-instagram"><i class="fa-brands fa-instagram"></i> Instagram</div>
-            <div class="otc-link-item-fictif otc-link-tiktok"><i class="fa-brands fa-tiktok"></i> TikTok</div>
-            <div class="otc-link-item-fictif otc-link-linkedin"><i class="fa-brands fa-linkedin"></i> LinkedIn</div>
-          </div>
-        </div>
-      </div>
-      <div class="otc-nfc-waves" aria-hidden="true"><span></span><span></span><span></span></div>
-      <div class="otc-tag-physical" aria-hidden="true">
-        <div class="otc-tag-inner">
-          <i class="fa-brands fa-nfc-symbol"></i>
-          <div class="otc-tag-text">ONETAP</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- =========================================================
-     2 — COMMENT ÇA MARCHE
-     ========================================================= -->
-<section id="otc-how" class="otc-section otc-how-it-works">
-  <div class="otc-container">
-    <div class="otc-section-head">
-      <span class="otc-eyebrow">Démonstration</span>
-      <h2>Votre univers numérique.<br><span class="otc-gradient-text">En trois étapes simples.</span></h2>
-      <p>Plus besoin de chercher un profil ou de dicter une adresse complexe lors d'une rencontre.</p>
-    </div>
-    <div class="otc-steps-grid">
-      <div class="otc-step-card">
-        <div class="otc-step-number">01</div>
-        <h3>CONFIGUREZ</h3>
-        <p>Scannez le tag pour la première fois. Une page de configuration sécurisée s'ouvre : collez votre lien et validez. Votre tag est prêt en moins de 2 minutes.</p>
-      </div>
-      <div class="otc-step-card">
-        <div class="otc-step-number">02</div>
-        <h3>APPROCHEZ</h3>
-        <p>Approchez un smartphone compatible NFC du tag rond en acrylique. Le scan est instantané.</p>
-      </div>
-      <div class="otc-step-card">
-        <div class="otc-step-number">03</div>
-        <h3>CONNECTEZ</h3>
-        <p>Votre page s'ouvre directement. Votre interlocuteur découvre le lien que vous avez associé à votre tag.</p>
-      </div>
-    </div>
-    <p class="otc-how-note"><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Configurez votre tag une seule fois. Ensuite, chaque scan ouvre directement votre lien. Modifiez-le gratuitement, autant de fois que vous le souhaitez.</p>
-  </div>
-</section>
-
-<!-- =========================================================
-     3 — HUIT DESTINATIONS
-     ========================================================= -->
-<section class="otc-section otc-destinations" id="otc-destinations">
-  <div class="otc-container">
-    <div class="otc-section-head">
-      <span class="otc-eyebrow">Polyvalence ultime</span>
-      <h2>Un seul tag.<br><span class="otc-gradient-text">Huit destinations à la carte.</span></h2>
-      <p>Associez votre OneTap Circle à la plateforme qui correspond le mieux à votre activité commerciale ou personnelle. Une page multi-liens peut aussi réunir plusieurs profils.</p>
-    </div>
-    <div class="otc-dest-grid">
-      <div class="otc-dest-card"><i class="fa-brands fa-instagram" aria-hidden="true"></i><span>Instagram</span></div>
-      <div class="otc-dest-card"><i class="fa-brands fa-tiktok" aria-hidden="true"></i><span>TikTok</span></div>
-      <div class="otc-dest-card"><i class="fa-brands fa-whatsapp" aria-hidden="true"></i><span>WhatsApp</span></div>
-      <div class="otc-dest-card"><i class="fa-brands fa-linkedin" aria-hidden="true"></i><span>LinkedIn</span></div>
-      <div class="otc-dest-card"><i class="fa-brands fa-youtube" aria-hidden="true"></i><span>YouTube</span></div>
-      <div class="otc-dest-card"><i class="fa-brands fa-facebook" aria-hidden="true"></i><span>Facebook</span></div>
-      <div class="otc-dest-card"><i class="fa-solid fa-link" aria-hidden="true"></i><span>Linktree</span></div>
-      <div class="otc-dest-card"><i class="fa-solid fa-utensils" aria-hidden="true"></i><span>Menu digital</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- =========================================================
-     4 — CARACTÉRISTIQUES
-     ========================================================= -->
-<section class="otc-section otc-features" id="otc-features">
-  <div class="otc-container">
-    <div class="otc-section-head">
-      <span class="otc-eyebrow">Finition d'excellence</span>
-      <h2>Finition premium.<br><span class="otc-gradient-text">Conçue pour durer.</span></h2>
-      <p>Un support élégant et robuste, pensé pour accompagner votre activité au quotidien.</p>
-    </div>
-    <div class="otc-features-grid">
-      <div class="otc-feature-item">
-        <div class="otc-feature-icon"><i class="fa-solid fa-gem" aria-hidden="true"></i></div>
-        <h3>Acrylique premium</h3>
-        <p>Un support rigide et épais, conçu pour durer. Son format rond rappelle un jeton technologique haut de gamme.</p>
-      </div>
-      <div class="otc-feature-item">
-        <div class="otc-feature-icon"><i class="fa-solid fa-droplet" aria-hidden="true"></i></div>
-        <h3>Protection en résine</h3>
-        <p>Un revêtement en résine brillante protège la surface. Profitez d'une excellente résistance aux rayures et d'une étanchéité totale.</p>
-      </div>
-      <div class="otc-feature-item">
-        <div class="otc-feature-icon"><i class="fa-solid fa-map-pin" aria-hidden="true"></i></div>
-        <h3>Intérieur ou extérieur</h3>
-        <p>Installez votre tag sur un comptoir, un bureau, une vitrine ou une terrasse de café. Il s'adapte à votre environnement.</p>
-      </div>
-      <div class="otc-feature-item">
-        <div class="otc-feature-icon"><i class="fa-solid fa-wave-square" aria-hidden="true"></i></div>
-        <h3>NFC intégré sans batterie</h3>
-        <p>Aucune recharge requise. La puce est alimentée par le champ électromagnétique NFC du smartphone lors du scan.</p>
-      </div>
-      <div class="otc-feature-item">
-        <div class="otc-feature-icon"><i class="fa-solid fa-mobile-screen" aria-hidden="true"></i></div>
-        <h3>Compatible iOS & Android</h3>
-        <p>Partagez votre univers avec les smartphones compatibles NFC, sans application dédiée à installer pour la lecture.</p>
-      </div>
-      <div class="otc-feature-item">
-        <div class="otc-feature-icon"><i class="fa-solid fa-infinity" aria-hidden="true"></i></div>
-        <h3>Votre lien, votre liberté</h3>
-        <p>Modifiez votre lien gratuitement, autant de fois que vous le souhaitez. Vous gardez le contrôle de votre destination.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- =========================================================
-     5 — FAQ
-     ========================================================= -->
-<section class="otc-section otc-faq" id="otc-faq">
-  <div class="otc-container">
-    <div class="otc-section-head">
-      <span class="otc-eyebrow">Des réponses à vos questions</span>
-      <h2>Les questions essentielles</h2>
-      <p>Les informations utiles avant de choisir votre OneTap Circle.</p>
-    </div>
-    <div class="otc-faq-wrapper">
-      <details class="otc-faq-item">
-        <summary>Comment configurer mon tag NFC ? <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
-        <div class="otc-faq-content"><p>C'est très simple. Scannez votre tag pour la première fois. Une page de configuration sécurisée s'ouvre. Collez votre lien et validez. Votre tag est opérationnel en deux minutes.</p></div>
-      </details>
-      <details class="otc-faq-item">
-        <summary>Puis-je modifier mon lien après configuration ? <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
-        <div class="otc-faq-content"><p>Absolument. Vous gardez le contrôle de votre destination. Changez votre lien de redirection gratuitement et autant de fois que vous le souhaitez.</p></div>
-      </details>
-      <details class="otc-faq-item">
-        <summary>Le tag nécessite-t-il une batterie ou une application ? <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
-        <div class="otc-faq-content"><p>Non. La puce NFC fonctionne sans pile ni recharge. Aucune application dédiée n'est nécessaire pour lire le tag sur un smartphone compatible NFC.</p></div>
-      </details>
-      <details class="otc-faq-item">
-        <summary>Le tag résiste-t-il à l'eau et aux conditions extérieures ? <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
-        <div class="otc-faq-content"><p>Oui. Grâce à sa structure en acrylique premium et à son revêtement protecteur en résine brillante, le tag est étanche et résistant aux rayures. Il convient à une utilisation intérieure et extérieure.</p></div>
-      </details>
-      <details class="otc-faq-item">
-        <summary>Quels sont les coûts et délais de livraison au Maroc ? <i class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
-        <div class="otc-faq-content"><p>La livraison est entièrement gratuite (0 DH) partout au Maroc. Votre commande est livrée sous 24 à 48 heures maximum après validation.</p></div>
-      </details>
-    </div>
-  </div>
-</section>
-
-<!-- =========================================================
-     6 — FINAL CTA ET RÉASSURANCE
-     ========================================================= -->
-<section class="otc-section otc-final-cta" id="otc-order">
-  <div class="otc-container">
-    <div class="otc-trust-badges">
-      <div class="otc-badge-card">
-        <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
-        <h4>Vous gardez le contrôle</h4>
-        <p>Vous choisissez et modifiez librement votre destination.</p>
-      </div>
-      <div class="otc-badge-card">
-        <i class="fa-solid fa-stopwatch" aria-hidden="true"></i>
-        <h4>Prêt en 2 minutes</h4>
-        <p>Configurez votre lien depuis votre smartphone, sans application dédiée.</p>
-      </div>
-      <div class="otc-badge-card">
-        <i class="fa-solid fa-truck" aria-hidden="true"></i>
-        <h4>Livraison offerte</h4>
-        <p>0 DH partout au Maroc. Livraison en 24 à 48 heures maximum.</p>
-      </div>
-    </div>
-    <div class="otc-cta-box">
-      <h2>Votre réseau mérite mieux qu'un simple échange de coordonnées.</h2>
-      <p>Faites découvrir votre univers numérique d'un seul contact. Un tag. Un smartphone. Toutes vos connexions.</p>
-      <div class="otc-price-line" style="justify-content:center;margin-bottom:25px;"><span class="otc-price">149 DH</span><span class="otc-pill">Livraison gratuite partout au Maroc</span></div>
-      <!-- Insérer ici le lien d'ajout au panier WooCommerce -->
-      <a href="https://wa.me/212706744833?text=Bonjour%2C%20je%20souhaite%20commander%20un%20tag%20NFC%20OneTap%20Circle%20%C3%A0%20149%20DH." target="_blank" rel="noopener noreferrer" class="otc-button">COMMANDER MON ONETAP CIRCLE <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>COMMANDER MON ONETAP CIRCLE <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
-    </div>
-  </div>
-</section>
-
-<div class="otc-footer-note" style="padding:20px 12px;background:#080B11;color:#78879B;font-size:.75rem;text-align:center;">OneTap Circle · Un geste. Tout connecté.</div>
+  <div class="otc-footer-note">OneTap Circle · Un geste. Tout connecté.</div>
 </div>
+</body>
+</html>
